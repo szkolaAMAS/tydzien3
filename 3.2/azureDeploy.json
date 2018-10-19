@@ -155,7 +155,7 @@
   },
   "variables": {
     "deploymentApiVersion": "2016-02-01",
-    "vNetApiVersion": "2015-06-15",
+    "vNetApiVersion": "2017-06-01",
     "storageApiVersion": "2015-06-15",
     "nicApiVersion": "2015-06-15",
     "vmApiVersion": "2015-06-15",
