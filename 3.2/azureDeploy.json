@@ -195,7 +195,7 @@
         },
         "parameters": {
           "publicIpNamePrefix": { "value": "[parameters('publicIpNamePrefix')]" },
-          "publicIpApiVersion": { "value": "[variables('publicIpApiVersion')]" },
+          "publicIpApiVersion": { "value": "[variables('publicIpApiVersion')]" }
           }
       }
     },
@@ -231,10 +231,32 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "nicName": { "value": "[parameters('nicName')]" },
+          "nic1Name": { "value": "[parameters('nic1Name')]" },
           "nicApiVersion": { "value": "[variables('nicApiVersion')]" },
-          "subnetID": { "value": "[reference(parameters('nestedDeploymentNameVnet')).outputs.subnetID.value]" },
-          "publicIpID": { "value": "[reference(parameters('nestedDeploymentNamePublicIp')).outputs.publicIpID.value]" }
+          "subnet1ID": { "value": "[reference(parameters('nestedDeploymentNameVnet')).outputs.subnet1ID.value]" },
+          "public1IpID": { "value": "[reference(parameters('nestedDeploymentNamePublicIp')).outputs.public1IpID.value]" }
+        }
+      }
+    },
+    {
+      "apiVersion": "[variables('deploymentApiVersion')]",
+      "name": "[parameters('nestedDeploymentNameNic')]",
+      "type": "Microsoft.Resources/deployments",
+      "dependsOn": [
+        "[concat('Microsoft.Resources/deployments/', parameters('nestedDeploymentNameVnet'))]",
+        "[concat('Microsoft.Resources/deployments/', parameters('nestedDeploymentNamePublicIp'))]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[concat(parameters('baseTemplateUri'), '/shared/', parameters('sharedTemplateNameNic'))]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "nic2Name": { "value": "[parameters('nic2Name')]" },
+          "nicApiVersion": { "value": "[variables('nicApiVersion')]" },
+          "subnet2ID": { "value": "[reference(parameters('nestedDeploymentNameVnet')).outputs.subnet2ID.value]" },
+          "public2IpID": { "value": "[reference(parameters('nestedDeploymentNamePublicIp')).outputs.public2IpID.value]" }
         }
       }
     },
@@ -255,13 +277,12 @@
         "parameters": {
           "vmNamePrefix": { "value": "[parameters('vmNamePrefix')]" },
           "vmApiVersion": { "value": "[variables('vmApiVersion')]" },
-          "deploymentType": { "value": "[parameters('deploymentType')]" },
           "vmSize": { "value": "[parameters('vmSize')]" },
           "vmAdminUserName": { "value": "[parameters('vmAdminUserName')]" },
           "vmAdminPassword": { "value": "[parameters('vmAdminPassword')]" },
           "vmImagePublisher": { "value": "[variables('vmImagePublisher')]" },
           "vmImageOffer": { "value": "[variables('vmImageOffer')]" },
-          "vmWindowsOSVersion": { "value": "[parameters('vmWindowsOSVersion')]" },
+          "vmWindowsOSVersion": { "value": "[parameters('vmUbuntuOSVersion')]" },
           "storageAccountName": { "value": "[reference(parameters('nestedDeploymentNameStorage')).outputs.storageAccountName.value]" },
           "vmNic": { "value": "[reference(parameters('nestedDeploymentNameNic')).outputs.vmNic.value]" }
         }

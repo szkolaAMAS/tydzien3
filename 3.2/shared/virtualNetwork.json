@@ -8,14 +8,6 @@
         "description": "Name of the virtual network."
       }
     },
-    "deploymentType": {
-      "type": "string",
-      "allowedValues": [ "dev", "prod" ],
-      "defaultValue": "dev",
-      "metadata": {
-        "description": "String to determine which network the VM is deployed to."
-      }
-    },
     "vNetApiVersion": {
       "type": "string",
       "metadata": {
@@ -28,13 +20,13 @@
         "description": "IP range of the virtual network."
       }
     },
-    "subnetProdRange": {
+    "subnet1Range": {
       "type": "string",
       "metadata": {
         "description": "IP range of first subnet."
       }
     },
-    "subnetDevRange": {
+    "subnet2Range": {
       "type": "string",
       "metadata": {
         "description": "IP range of second subnet."
@@ -42,10 +34,11 @@
     }
   },
   "variables": {
-    "subnetProdName": "subnet-prod",
-    "subnetDevName": "subnet-dev",
+    "subnet1Name": "subnet-1",
+    "subnet2Name": "subnet-2",
     "vNetID": "[resourceId('Microsoft.Network/virtualNetworks', parameters('vNetName'))]",
-    "vNetSubnetID": "[concat(variables('vNetID'), '/subnets/', 'subnet-', parameters('deploymentType'))]"
+    "vNetSubnet1ID": "[concat(variables('vNetID'), '/subnets/', 'subnet-', '1')]",
+    "vNetSubnet2ID": "[concat(variables('vNetID'), '/subnets/', 'subnet-', '2')]"
   },
   "resources": [
     {
@@ -65,15 +58,15 @@
         },
         "subnets": [
           {
-            "name": "[variables('subnetProdName')]",
+            "name": "[variables('subnet1Name')]",
             "properties": {
-              "addressPrefix": "[parameters('subnetProdRange')]"
+              "addressPrefix": "[parameters('subnet1Range')]"
             }
           },
           {
-            "name": "[variables('subnetDevName')]",
+            "name": "[variables('subnet2Name')]",
             "properties": {
-              "addressPrefix": "[parameters('subnetDevRange')]"
+              "addressPrefix": "[parameters('subnet2Range')]"
             }
           }
         ]
@@ -81,9 +74,12 @@
     }
   ],
   "outputs": {
-    "subnetID": {
+    "subnet1ID": {
       "type": "string",
-      "value": "[variables('vNetSubnetID')]"
+      "value": "[variables('vNetSubnet1ID')]",
+      "subnet2ID": {
+        "type": "string",
+        "value": "[variables('vNetSubnet2ID')]"
     }
   }
 }
