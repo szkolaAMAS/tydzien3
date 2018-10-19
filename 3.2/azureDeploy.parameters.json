@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "baseTemplateUri": {
-      "value": "https://raw.githubusercontent.com/szkolaAMAS/tydzien3/master/3.2/"
+      "value": "https://raw.githubusercontent.com/szkolaAMAS/tydzien3/master/3.2"
     },
     "nestedDeploymentNameVnet": {
       "value": "deploy-virtual-network"
