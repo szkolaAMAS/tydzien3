@@ -14,14 +14,6 @@
         "description": "Azure API for the VM deployment."
       }
     },
-    "deploymentType": {
-      "type": "string",
-      "allowedValues": [ "dev", "prod" ],
-      "defaultValue": "dev",
-      "metadata": {
-        "description": "String to determine which network the VM is deployed to."
-      }
-    },
     "vmSize": {
       "type": "string",
       "metadata": {
@@ -52,7 +44,7 @@
         "description": "Virtual machine image offer."
       }
     },
-    "vmWindowsOSVersion": {
+    "vmUbuntuOSVersion": {
       "type": "string",
       "metadata": {
         "description": "Virtual machine image SKU."
@@ -97,7 +89,7 @@
           "imageReference": {
             "publisher": "[parameters('vmImagePublisher')]",
             "offer": "[parameters('vmImageOffer')]",
-            "sku": "[parameters('vmWindowsOSVersion')]",
+            "sku": "[parameters('vmUbuntuOSVersion')]",
             "version": "latest"
           },
           "osDisk": {
