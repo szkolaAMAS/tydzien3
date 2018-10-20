@@ -1,0 +1,16 @@
+{
+    "Name": "3.3_RBAC",
+    "IsCustom": true,
+    "Description": "Custom role",
+    "Actions": [
+      "Microsoft.Compute/virtualMachines/start/action",
+      "Microsoft.Compute/virtualMachines/powerOff/action",
+      "Microsoft.Support/supportTickets/write"
+    ],
+    "NotActions": [
+  
+    ],
+    "AssignableScopes": [
+      "/subscriptions/6e2534a3-cf92-4662-9920-1d184ec7628f"
+    ]
+  }

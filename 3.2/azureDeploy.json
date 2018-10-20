@@ -68,13 +68,7 @@
         "description": "Prefix string for storage account name."
       }
     },
-    "nic1Name": {
-      "type": "string",
-      "metadata": {
-        "description": "Name of the network interface."
-      }
-    },
-    "nic2Name": {
+    "nicName": {
       "type": "string",
       "metadata": {
         "description": "Name of the network interface."
@@ -238,28 +232,7 @@
         }
       }
     },
-    {
-      "apiVersion": "[variables('deploymentApiVersion')]",
-      "name": "[parameters('nestedDeploymentNameNic')]",
-      "type": "Microsoft.Resources/deployments",
-      "dependsOn": [
-        "[concat('Microsoft.Resources/deployments/', parameters('nestedDeploymentNameVnet'))]",
-        "[concat('Microsoft.Resources/deployments/', parameters('nestedDeploymentNamePublicIp'))]"
-      ],
-      "properties": {
-        "mode": "Incremental",
-        "templateLink": {
-          "uri": "[concat(parameters('baseTemplateUri'), '/shared/', parameters('sharedTemplateNameNic'))]",
-          "contentVersion": "1.0.0.0"
-        },
-        "parameters": {
-          "nic2Name": { "value": "[parameters('nic2Name')]" },
-          "nicApiVersion": { "value": "[variables('nicApiVersion')]" },
-          "subnet2ID": { "value": "[reference(parameters('nestedDeploymentNameVnet')).outputs.subnet2ID.value]" },
-          "public2IpID": { "value": "[reference(parameters('nestedDeploymentNamePublicIp')).outputs.public2IpID.value]" }
-        }
-      }
-    },
+    
     {
       "apiVersion": "[variables('deploymentApiVersion')]",
       "name": "[parameters('nestedDeploymentNameVM')]",

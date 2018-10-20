@@ -1,0 +1,1 @@
+az group deployment validate --resource-group testyazure --template-file azureDeploy.json --parameters azureDeploy.parameters.json
