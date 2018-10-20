@@ -64,7 +64,7 @@
     }
   },
   "variables": {
-    "vmName": "[concat(parameters('vmNamePrefix'),'-',parameters('deploymentType'))]",
+    "vmName": "[concat(parameters('vmNamePrefix'),'-','todo')]",
     "vmOSDiskName": "[concat(variables('vmName'),'-','osdisk')]"
   },
   "resources": [
@@ -95,7 +95,7 @@
           "osDisk": {
             "name": "[variables('vmOSDiskName')]",
             "vhd": {
-              "uri": "[concat('http://', parameters('storageAccountName'), '.blob.core.windows.net/', parameters('deploymentType'), '/', variables('vmOSDiskName'), '.vhd')]"
+              "uri": "[concat('http://', parameters('storageAccountName'), '.blob.core.windows.net/', 'todo', '/', variables('vmOSDiskName'), '.vhd')]"
             },
             "caching": "ReadWrite",
             "createOption": "FromImage"
