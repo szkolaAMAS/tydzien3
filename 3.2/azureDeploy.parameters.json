@@ -12,7 +12,7 @@
       "value": "virtualNetwork.json"
     },
     "vNetName": {
-      "value": "virtual-network-01"
+      "value": "virtual-network-sowa"
     },
     "vNetRange": {
       "value": "10.0.0.0/16"
@@ -32,8 +32,11 @@
     "sharedTemplateNameStorage": {
       "value": "storageAccount.json"
     },
-    "storageAccountNamePrefix": {
-      "value": "storage"
+    "storageAccountName1Prefix": {
+      "value": "storage1"
+    },
+    "storageAccountName2Prefix": {
+      "value": "storage2"
     },
     "nic1Name": {
       "value": "vm-nic-0"
@@ -53,8 +56,11 @@
     "sharedTemplateNameVM": {
       "value": "virtualMachine.json"
     },
-    "vmNamePrefix": {
-      "value": "linux"
+    "vmName1Prefix": {
+      "value": "linux1"
+    },
+    "vmName2Prefix": {
+      "value": "linux2"
     },
     "vmSize": {
       "value": "Standard_D1"
@@ -76,8 +82,11 @@
     "sharedTemplateNamePublicIp": {
       "value": "publicIP.json"
     },
-    "publicIpNamePrefix": {
-      "value": "ip"
+    "publicIp1NamePrefix": {
+      "value": "ip1"
+    },
+    "publicIp2NamePrefix": {
+      "value": "ip2"
     },
     "nestedDeploymentNamePublicIp": {
       "value": "deploy-public-ip"

@@ -13,18 +13,10 @@
       "metadata": {
         "description": "Azure API version for the Public IP resource."
       }
-    },
-    "deploymentType": {
-      "type": "string",
-      "allowedValues": [ "dev", "prod" ],
-      "defaultValue": "dev",
-      "metadata": {
-        "description": "String to determine which network the VM is deployed to."
-      }
-    }
+    }    
   },
   "variables": {
-    "publicIpName": "[concat(parameters('publicIpNamePrefix'),'-',parameters('deploymentType'))]"
+    "publicIpName": "[concat(parameters('publicIpNamePrefix'),'-sowa')]"
   },
   "resources": [
     {
