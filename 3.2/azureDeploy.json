@@ -201,7 +201,10 @@
       "type": "string"
     },
     "networkSecurityGroupName":{
-      "type": "string"
+      "type": "string",
+      "metadata": {
+        "description": "Name of NSG."
+      }
     }
   },
   "variables": {
@@ -217,8 +220,26 @@
   "resources": [
     {
       "apiVersion": "[variables('deploymentApiVersion')]",
+      "name": "[parameters('nestedDeploymentNSG')]",
+      "type": "Microsoft.Resources/deployments",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[concat(parameters('baseTemplateUri'), '/shared/', parameters('sharedTemplateNameNSG'))]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "networkSecurityGroupName":{ "value": "[parameters('networkSecurityGroupName')]" }
+        }
+      }
+    },
+    {
+      "apiVersion": "[variables('deploymentApiVersion')]",
       "name": "[parameters('nestedDeploymentNameVnet')]",
       "type": "Microsoft.Resources/deployments",
+      "dependsOn": [
+        "[concat('Microsoft.Resources/deployments/', parameters('nestedDeploymentNSG'))]"
+      ],
       "properties": {
         "mode": "Incremental",
         "templateLink": {
@@ -395,22 +416,6 @@
                 "ubuntuOSVersion": { "value": "[parameters('ubuntuOSVersion')]" },
                 "storageAccountName": { "value": "[reference(parameters('nestedDeploymentNameStorage2')).outputs.storageAccountName.value]" },
                 "vmNic": { "value": "[reference(parameters('nestedDeploymentNameNic2')).outputs.vmNic.value]" }
-              }
-            }
-          },
-          {
-            "apiVersion": "[variables('deploymentApiVersion')]",
-            "name": "[parameters('nestedDeploymentNSG')]",
-            "type": "Microsoft.Resources/deployments",
-            "properties": {
-              "mode": "Incremental",
-              "templateLink": {
-                "uri": "[concat(parameters('baseTemplateUri'), '/shared/', parameters('sharedTemplateNameNSG'))]",
-                "contentVersion": "1.0.0.0"
-              },
-              "parameters": {
-                "networkSecurityGroupName":{ "value": "[parameters('networkSecurityGroupName')]" },
-                "location": {"value": "[resourceGroup().location]"}
               }
             }
           }
