@@ -13,7 +13,7 @@
         {
             "apiVersion": "2015-06-15",
             "type": "Microsoft.Network/networkSecurityGroups",
-            "name": "sowa]",
+            "name": "[parameters('networkSecurityGroupName')]",
             "location": "[resourceGroup().location]",
             "properties": {
                 "securityRules": [
