@@ -3,10 +3,10 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "networkSecurityGroupName": {
-            "type": "string"
-        },
-        "location": {
-            "type": "string"
+            "type": "string",
+            "metadata": {
+              "description": "Name of the NSG."
+            }
         }
     },
     "resources": [
@@ -15,7 +15,24 @@
             "type": "Microsoft.Network/networkSecurityGroups",
             "name": "[parameters('networkSecurityGroupName')]",
             "location": "[resourceGroup().location]",
-            "properties": {}
+            "properties": {
+                "securityRules": [
+                    {
+                      "name": "SSH",
+                      "properties": {
+                        "description": "Allows SSH traffic",
+                        "protocol": "Tcp",
+                        "sourcePortRange": "*",
+                        "destinationPortRange": "22",
+                        "sourceAddressPrefix": "*",
+                        "destinationAddressPrefix": "*",
+                        "access": "Allow",
+                        "priority": 100,
+                        "direction": "Inbound"
+                      }
+                    }
+                  ]
+            }
         }
     ]
 }
