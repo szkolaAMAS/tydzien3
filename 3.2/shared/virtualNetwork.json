@@ -31,6 +31,12 @@
       "metadata": {
         "description": "IP range of second subnet."
       }
+    },
+    "networkSecurityGroupName":{
+      "type": "string",
+      "metadata": {
+        "description": "Name of the NSG."
+      }
     }
   },
   "variables": {
@@ -61,6 +67,9 @@
             "name": "[variables('subnet1Name')]",
             "properties": {
               "addressPrefix": "[parameters('subnet1Range')]"
+            },
+            "networkSecurityGroup": {
+              "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroupName'))]"
             }
           },
           {

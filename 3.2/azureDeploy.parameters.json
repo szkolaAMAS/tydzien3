@@ -26,8 +26,11 @@
     "storageType": {
       "value": "Standard_LRS"
     },
-    "nestedDeploymentNameStorage": {
-      "value": "deploy-storage-account"
+    "nestedDeploymentNameStorage1": {
+      "value": "deploy-storage-account-1"
+    },
+    "nestedDeploymentNameStorage2": {
+      "value": "deploy-storage-account-2"
     },
     "sharedTemplateNameStorage": {
       "value": "storageAccount.json"
@@ -39,19 +42,25 @@
       "value": "storage2"
     },
     "nic1Name": {
-      "value": "vm-nic-0"
-    },
-    "nic2Name": {
       "value": "vm-nic-1"
     },
-    "nestedDeploymentNameNic": {
-      "value": "deploy-nic"
+    "nic2Name": {
+      "value": "vm-nic-2"
+    },
+    "nestedDeploymentNameNic1": {
+      "value": "deploy-nic-1"
+    },
+    "nestedDeploymentNameNic2": {
+      "value": "deploy-nic-2"
     },
     "sharedTemplateNameNic": {
       "value": "networkInterface.json"
     },
-    "nestedDeploymentNameVM": {
-      "value": "deploy-virtual-machine"
+    "nestedDeploymentNameVM1": {
+      "value": "deploy-virtual-machine-1"
+    },
+    "nestedDeploymentNameVM2": {
+      "value": "deploy-virtual-machine-2"
     },
     "sharedTemplateNameVM": {
       "value": "virtualMachine.json"
@@ -63,7 +72,7 @@
       "value": "linux2"
     },
     "vmSize": {
-      "value": "Standard_D1"
+      "value": "Standard_B1s"
     },
     "vmAdminUserName": {
       "value": "vmAdmin"
@@ -76,8 +85,8 @@
         "secretName": "vmAdminPassword"
       }
     },
-    "vmUbuntuOSVersion": {
-      "value": "18.04_LTS"
+    "ubuntuOSVersion": {
+      "value": "18.04-LTS"
     },
     "sharedTemplateNamePublicIp": {
       "value": "publicIP.json"
@@ -88,8 +97,20 @@
     "publicIp2NamePrefix": {
       "value": "ip2"
     },
-    "nestedDeploymentNamePublicIp": {
-      "value": "deploy-public-ip"
+    "nestedDeploymentNamePublicIp1": {
+      "value": "deploy-public-ip-1"
+    },
+    "nestedDeploymentNamePublicIp2": {
+      "value": "deploy-public-ip-2"
+    },
+    "networkSecurityGroupName": {
+      "value": "sowa"
+    },
+    "nestedDeploymentNSG":{
+      "value": "deploy-NSG"
+    },
+    "sharedTemplateNameNSG":{
+      "value": "nsg.json"
     }
   }
 }
