@@ -31,12 +31,6 @@
       "metadata": {
         "description": "IP range of second subnet."
       }
-    },
-    "networkSecurityGroupName":{
-      "type": "string",
-      "metadata": {
-        "description": "Name of the NSG."
-      }
     }
   },
   "variables": {
