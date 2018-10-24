@@ -53,11 +53,11 @@
               },
               "publicIPAddress": {
                 "id": "[parameters('publicIpID')]"
-              },
-              "networkSecurityGroup": {"id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroupName'))]"}
+              }
             }
           }
-        ]
+        ],
+        "networkSecurityGroup": {"id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroupName'))]"}
       }
     }
   ],
