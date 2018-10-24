@@ -25,6 +25,12 @@
       "metadata": {
         "description": "ID of Public IP resource."
       }
+    },
+    "networkSecurityGroupName":{
+      "type": "string",
+      "metadata": {
+        "description": "Name of NSG."
+      }
     }
   },
   "variables": {
@@ -47,7 +53,8 @@
               },
               "publicIPAddress": {
                 "id": "[parameters('publicIpID')]"
-              }
+              },
+              "networkSecurityGroup": {"id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroupName'))]"}
             }
           }
         ]
