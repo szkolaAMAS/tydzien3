@@ -8,6 +8,12 @@
         "description": "Base URI of template resources."
       }
     },
+    "networkSecurityGroupName":{
+      "type": "string",
+      "metadata": {
+        "description": "Name of NSG."
+      }
+    },
     "nestedDeploymentNameVnet": {
       "type": "string",
       "metadata": {
@@ -199,12 +205,6 @@
     },
     "sharedTemplateNameNSG":{
       "type": "string"
-    },
-    "networkSecurityGroupName":{
-      "type": "string",
-      "metadata": {
-        "description": "Name of NSG."
-      }
     }
   },
   "variables": {
@@ -251,7 +251,8 @@
           "vNetApiVersion": { "value": "[variables('vNetApiVersion')]" },
           "vNetRange": { "value": "[parameters('vNetRange')]" },
           "subnet1Range": { "value": "[parameters('subnet1Range')]" },
-          "subnet2Range": { "value": "[parameters('subnet2Range')]" }
+          "subnet2Range": { "value": "[parameters('subnet2Range')]" },
+          "networkSecurityGroupName": { "value": "[parameters('networkSecurityGroupName')]" }
         }
       }
     },
@@ -325,7 +326,8 @@
             "type": "Microsoft.Resources/deployments",
             "dependsOn": [
               "[concat('Microsoft.Resources/deployments/', parameters('nestedDeploymentNameVnet'))]",
-              "[concat('Microsoft.Resources/deployments/', parameters('nestedDeploymentNamePublicIp1'))]"
+              "[concat('Microsoft.Resources/deployments/', parameters('nestedDeploymentNamePublicIp1'))]",
+              "[concat('Microsoft.Resources/deployments/', parameters('nestedDeploymentNSG'))]"
             ],
             "properties": {
               "mode": "Incremental",
@@ -337,7 +339,8 @@
                 "nicName": { "value": "[parameters('nic1Name')]" },
                 "nicApiVersion": { "value": "[variables('nicApiVersion')]" },
                 "subnetID": { "value": "[reference(parameters('nestedDeploymentNameVnet')).outputs.subnet1ID.value]" },
-                "publicIpID": { "value": "[reference(parameters('nestedDeploymentNamePublicIp1')).outputs.publicIpID.value]" }
+                "publicIpID": { "value": "[reference(parameters('nestedDeploymentNamePublicIp1')).outputs.publicIpID.value]" },
+                "networkSecurityGroupName":{ "value": "[parameters('networkSecurityGroupName')]" }
               }
             }
           },
@@ -347,7 +350,8 @@
             "type": "Microsoft.Resources/deployments",
             "dependsOn": [
               "[concat('Microsoft.Resources/deployments/', parameters('nestedDeploymentNameVnet'))]",
-              "[concat('Microsoft.Resources/deployments/', parameters('nestedDeploymentNamePublicIp2'))]"
+              "[concat('Microsoft.Resources/deployments/', parameters('nestedDeploymentNamePublicIp2'))]",
+              "[concat('Microsoft.Resources/deployments/', parameters('nestedDeploymentNSG'))]"
             ],
             "properties": {
               "mode": "Incremental",
@@ -359,7 +363,8 @@
                 "nicName": { "value": "[parameters('nic2Name')]" },
                 "nicApiVersion": { "value": "[variables('nicApiVersion')]" },
                 "subnetID": { "value": "[reference(parameters('nestedDeploymentNameVnet')).outputs.subnet2ID.value]" },
-                "publicIpID": { "value": "[reference(parameters('nestedDeploymentNamePublicIp2')).outputs.publicIpID.value]" }
+                "publicIpID": { "value": "[reference(parameters('nestedDeploymentNamePublicIp2')).outputs.publicIpID.value]" },
+                "networkSecurityGroupName":{ "value": "[parameters('networkSecurityGroupName')]" }
               }
             }
           },

@@ -104,7 +104,7 @@
       "value": "deploy-public-ip-2"
     },
     "networkSecurityGroupName": {
-      "value": "sowa"
+      "value": "sowa-NSG-0"
     },
     "nestedDeploymentNSG":{
       "value": "deploy-NSG"
